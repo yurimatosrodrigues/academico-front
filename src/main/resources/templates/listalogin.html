@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width" />
+		<title>Lista de Convidados </title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+	</head>
+	
+	<body>
+		<div class="panel panel-default" style="margin: 10px">
+			<div class="panel-heading">
+				<h1 class="panel-title">Lista de convidados</h1>
+			</div>
+			<div class="panel-body">
+			
+				<form class="form-inline" method="POST" th:object="${login}" 
+					th:action="@{/salvar}" style="margin: 20px 0">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Login" th:field="*{username}"/>
+						<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
+						<input type="text" class="form-control" placeholder="Password" th:field="*{password}"/>
+						<input type="text" class="form-control" placeholder="Tipo" th:field="*{tipoLogin}"/>
+						
+						<button type="submit" class="btn btn-primary"> Adicionar </button>
+					</div>
+				</form>
+			
+				<table class="table">
+					<thead>						
+						<tr>
+							<th>Id</th>
+							<th>Login</th>
+							<th>Nome</th>
+							<th>Password</th>
+							<th>Tipo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="login : ${logins}">							
+							<td th:text="${login.id}"></td>
+							<td th:text="${login.username}"></td>
+							<td th:text="${login.nome}"></td>
+							<td th:text="${login.password}"></td>
+							<td th:text="${login.tipoLogin}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>

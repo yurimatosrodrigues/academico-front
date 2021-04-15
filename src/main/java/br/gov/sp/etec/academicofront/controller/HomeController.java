@@ -1,62 +1,30 @@
 package br.gov.sp.etec.academicofront.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 
-import br.sp.gov.etec.academicofront.dto.Login;
+import br.sp.gov.etec.academicofront.dto.EventoDto;
 
 @Controller
 public class HomeController {
-	final String url = "https://api-academico.herokuapp.com/login/";
-	
-	RestTemplate rest = new RestTemplate();
 	
 	@GetMapping("/")
-	public String index() {
-		return "index";
-	}
-	
-	
-	@GetMapping("/lista")
-	public ModelAndView listar() {
-		ModelAndView modelAndView = new ModelAndView("listalogin");		
-				
-		ArrayList<Login> logins = rest.getForObject(url+"consultar_login", ArrayList.class);		
-		modelAndView.addObject(new Login());
-		modelAndView.addObject("logins", logins);
-		return modelAndView;
-	}
-	
-	@PostMapping("/salvar")
-	public String salvar(Login login) {
-		HttpHeaders headers = new HttpHeaders();
+	public String index(Model model){
 		
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		EventoDto evento = new EventoDto();
+		evento.setNomeEvento("Escola Aberta");
+		evento.setDescricao("Semana aberta para comunidade");
+		LocalDate dataInicio = LocalDate.now();
+		evento.setDataInicio(dataInicio);
+		evento.setDataFim(dataInicio.plusDays(5));
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("username", login.getUsername());
-		map.put("nome", login.getNome());
-		map.put("password", login.getPassword());
-		map.put("tipoLogin", login.getTipoLogin());
-					
-		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+		model.addAttribute("eventos", Arrays.asList(evento,evento,evento));
 		
-		ResponseEntity<Login> response = rest.postForEntity(url+"/adicionar_login", entity, Login.class);
-		
-		return "redirect:/lista";		
+		return "home/index";		
 	}
 
 }

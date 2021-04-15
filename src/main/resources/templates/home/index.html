@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width" />
+		<title>Lista de Convidados</title>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"rel="stylesheet"/>
+		<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="jumbotron">  			
+			<h1 class="dysplay-4">Acadêmico Sebrae</h1>
+		</div>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+			  <a class="navbar-brand" href="#">Home</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav mr-auto">		      
+			      
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Cursos
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="#">Cadastro</a>
+			          <a class="dropdown-item" href="#">Consultar</a>		          
+			        </div>
+			      </li>
+			      
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Alunos
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="#">Cadastro</a>
+			          <a class="dropdown-item" href="#">Consultar</a>		          
+			        </div>
+			      </li>
+			      
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Funcionários
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="#">Cadastro</a>
+			          <a class="dropdown-item" href="#">Consultar</a>		          
+			        </div>
+			      </li>
+			      
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Secretaria
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="#">Cadastro</a>
+			          <a class="dropdown-item" href="#">Consultar</a>		          
+			        </div>
+			      </li>
+			      
+			       <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Eventos
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="#">Cadastrar Eventos</a>		          		          
+			        </div>
+			      </li>
+			     
+			    </ul>
+			    <form class="form-inline my-2 my-lg-0">
+			      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			    </form>
+			  </div>
+			</nav>
+		
+			<div class="card" th:each="evento: ${eventos}">
+				<div class="card-header" th:text="${evento.nomeEvento}">Nome evento</div>
+				<label>Descrição:</label>
+				<div th:text="${evento.descricao}">Descrição</div>
+				<label>Data início:</label>
+				<div th:text="${evento.dataInicio}">Data início</div>
+				<label>Data fim:</label>
+				<div th:text="${evento.dataFim}">Data fim</div>
+				<div th:text="${evento.imagemEvento}">Image</div>				 
+			</div> 
+		</div>		
+		
+		<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>

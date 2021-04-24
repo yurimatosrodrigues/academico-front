@@ -20,8 +20,8 @@ import br.sp.gov.etec.academicofront.dto.Login;
 
 @Controller
 public class LoginController {
-	//final String url = "https://api-academico.herokuapp.com/login/";
-	final String url = "localhost:8080/login/";
+	final String url = "https://apiacademico.herokuapp.com/login";
+	
 	RestTemplate rest = new RestTemplate();
 			
 	@GetMapping("/lista")

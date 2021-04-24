@@ -64,6 +64,11 @@
 			<artifactId>webjars-locator</artifactId>
 			<version>0.40</version>
 		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<!--<version> (managed by Spring Boot)42.2.5 </version> -->
+		</dependency>
 	</dependencies>
 
 	<build>

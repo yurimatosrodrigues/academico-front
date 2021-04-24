@@ -28,7 +28,7 @@ public class LoginController {
 	public ModelAndView listar() {
 		ModelAndView modelAndView = new ModelAndView("listalogin");		
 				
-		ArrayList<Login> logins = rest.getForObject(url+"consultar_login", ArrayList.class);		
+		ArrayList<Login> logins = rest.getForObject(url+"/consultar_login", ArrayList.class);		
 		modelAndView.addObject(new Login());
 		modelAndView.addObject("logins", logins);
 		return modelAndView;
